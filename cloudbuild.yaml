@@ -19,6 +19,20 @@ steps:
       - push
       - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
   
+  # create a instance
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: 
+      - 'compute'
+      - 'instances'
+      - 'create-with-container'
+      - 'kush-vm-name'
+      - '--container-image'
+      - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  
 substitutions:
   _IMAGE_VERSION: 'v1.0'
   _GCP_PROJECT: searce-playground-v1
