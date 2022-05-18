@@ -1,0 +1,26 @@
+steps:
+  # clone the repo
+  - name: gcr.io/cloud-builders/git
+    args:
+      - clone
+      - https://github.com/kush95300/http-ftp-server-with-go.git
+  
+  # build the image
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - 'gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_VERSION}'
+      - .
+
+  # push the image to gcr.io
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_VERSION}'
+  
+substitutions:
+  REPO_VERSION: 'v1.0'
+  GCP_PROJECT: searce-playground-v1
+  IMAGE_NAME: kaushal-server-cloudbuild
+
