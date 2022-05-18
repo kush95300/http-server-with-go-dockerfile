@@ -26,7 +26,7 @@ steps:
       - 'compute'
       - 'instances'
       - 'create-with-container'
-      - '${_INSTANCE_NAME}'
+      - '${_INSTANCE_NAME}-${_IMAGE_VERSION}'
       - '--project=${_GCP_PROJECT}'
       - '--network=${_NETWORK_NAME}'
       - '--zone=${_INSTANCE_ZONE}'
@@ -46,7 +46,7 @@ substitutions:
   _IMAGE_NAME: kaushal-server-cloudbuild
 
   # INSTANCE VARIABLES
-  _VM_NAME: kush-vm-name-v1
+  _INSTANCE_NAME: kush-vm-name
   _NETWORK_NAME: kaushal-vpc
   _SUBNET_NAME: kaushal-subnet-1
   _INSTANCE_ZONE: asia-south1-a
