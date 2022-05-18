@@ -29,12 +29,12 @@ steps:
       - services
       - update
       - ${_SERVICE_NAME}
-      - --platform=managed
+      - --platform=${_PLATFORM}
+      - --allow-unauthenticated
       - --image=gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
-      - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=${_COMMIT_SHA},gcb-build-id=${_BUILD_ID},owner=kaushal
+      - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=${_COMMIT_SHA},gcb-build-id=${_BUILD_ID},owner=kaushal,gcb-trigger-name=${TRIGGER_NAME},gcb-trigger-id=${TRIGGER_ID}
       - --region=${_DEPLOY_REGION}
       - --port=80
-      - --allow-unauthenticated
       - --quiet
     id: "deploy image"
 substitutions:
@@ -47,7 +47,11 @@ substitutions:
   # Cloud RUN Variable VARIABLES
   _SERVICE_NAME: kush-cicd-automatic
   _DEPLOY_REGION: asia-south1
+  _TRIGGER_ID: a0ca31ed-8467-43de-a6bb-4a6887e06328
+  _PLATFORM: managed
 tags:
   - kaushal-cicd-automatic
+  - gcp-cloud-build-deploy-cloud-run
+  - gcp-cloud-build-deploy-cloud-run-managed
 options:
  logging: CLOUD_LOGGING_ONLY
