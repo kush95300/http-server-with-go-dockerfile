@@ -10,19 +10,19 @@ steps:
     args:
       - build
       - -t
-      - 'gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_VERSION}'
+      - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
       - .
 
   # push the image to gcr.io
   - name: gcr.io/cloud-builders/docker
     args:
       - push
-      - 'gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_VERSION}'
+      - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
   
 substitutions:
-  IMAGE_VERSION: 'v1.0'
-  GCP_PROJECT: searce-playground-v1
-  IMAGE_NAME: kaushal-server-cloudbuild
+  _IMAGE_VERSION: 'v1.0'
+  _GCP_PROJECT: searce-playground-v1
+  _IMAGE_NAME: kaushal-server-cloudbuild
 
 options:
  logging: CLOUD_LOGGING_ONLY
