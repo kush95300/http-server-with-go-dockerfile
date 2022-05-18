@@ -32,8 +32,10 @@ steps:
       - '--zone=asia-south1-a'
       - '--subnet=kaushal-subnet-1'
       - '--machine-type=e2-micro'
-      - '--container-image'
-      - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
+      - '--container-image=gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
+      - '--tags=kaushal-flask'
+      # - '--container-image'
+      # - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
     env:
       - 'CLOUDSDK_COMPUTE_REGION=asia-south1'
       - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-a'
