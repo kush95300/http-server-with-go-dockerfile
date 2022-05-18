@@ -27,11 +27,13 @@ steps:
       - 'instances'
       - 'create-with-container'
       - 'kush-vm-name'
+      - '--network'
+      - 'kaushal-vpc'
       - '--container-image'
       - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_COMPUTE_REGION=asia-south1'
+      - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-a'
   
 substitutions:
   _IMAGE_VERSION: 'v1.0'
