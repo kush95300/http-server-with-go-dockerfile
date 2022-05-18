@@ -26,7 +26,8 @@ steps:
       - 'compute'
       - 'instances'
       - 'create-with-container'
-      - '${_INSTANCE_NAME}-${_IMAGE_VERSION}'
+      - '${_IMAGE_NAME}:${_IMAGE_VERSION}'              # comment it out if you want to use instance name
+      #- '${_INSTANCE_NAME}-${_IMAGE_VERSION}'          # uncomment it when use instance name
       - '--project=${_GCP_PROJECT}'
       - '--network=${_NETWORK_NAME}'
       - '--zone=${_INSTANCE_ZONE}'
@@ -43,10 +44,10 @@ substitutions:
 
   # IMAGE VARIABLES
   _IMAGE_VERSION: 'v1'
-  _IMAGE_NAME: kaushal-server-cloudbuild
+  _IMAGE_NAME: kaushal-server-cloudbuild-cicd-on-vm
 
   # INSTANCE VARIABLES
-  _INSTANCE_NAME: kush-vm-name
+  #_INSTANCE_NAME: kush-vm-name
   _NETWORK_NAME: kaushal-vpc
   _SUBNET_NAME: kaushal-subnet-1
   _INSTANCE_ZONE: asia-south1-a
