@@ -23,6 +23,7 @@ steps:
 
   # deploy the image to cloud run
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: gcloud
     args:
       - run
       - services
