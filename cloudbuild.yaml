@@ -26,7 +26,7 @@ steps:
       - 'compute'
       - 'instances'
       - 'create-with-container'
-      - '${_IMAGE_NAME}:${_IMAGE_VERSION}'              # comment it out if you want to use instance name
+      - '${_IMAGE_NAME}-${_IMAGE_VERSION}'              # comment it out if you want to use instance name
       #- '${_INSTANCE_NAME}-${_IMAGE_VERSION}'          # uncomment it when use instance name
       - '--project=${_GCP_PROJECT}'
       - '--network=${_NETWORK_NAME}'
