@@ -19,38 +19,19 @@ steps:
       - push
       - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
   
-  # create a instance
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    args: 
-      - 'compute'
-      - 'instances'
-      - 'create-with-container'
-      - '${_INSTANCE_NAME}-${_IMAGE_VERSION}'
-      - '--project=${_GCP_PROJECT}'
-      - '--network=${_NETWORK_NAME}'
-      - '--zone=${_INSTANCE_ZONE}'
-      - '--subnet=${_SUBNET_NAME}'
-      - '--machine-type=${_INSTANCE_MACHINE_TYPE}'
-      - '--container-image=gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
-      - '--tags=allow-all-80'
-    env:
-      - 'CLOUDSDK_COMPUTE_REGION=asia-south1'
-      - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-a'
-  
 substitutions:
   _GCP_PROJECT: searce-playground-v1
 
   # IMAGE VARIABLES
   _IMAGE_VERSION: 'v1'
-  _IMAGE_NAME: kaushal-server-cloudbuild
+  _IMAGE_NAME: kaushal-server-cloudbuild-cloudrun-cicd
 
-  # INSTANCE VARIABLES
-  _INSTANCE_NAME: kush-vm-name
-  _NETWORK_NAME: kaushal-vpc
-  _SUBNET_NAME: kaushal-subnet-1
-  _INSTANCE_ZONE: asia-south1-a
-  _INSTANCE_MACHINE_TYPE: e2-micro
+  # Cloud RUN Variable VARIABLES
+  # _Service_NAME: kush-vm-name
+  # _NETWORK_NAME: kaushal-vpc
+  # _SUBNET_NAME: kaushal-subnet-1
+  # _INSTANCE_ZONE: asia-south1-a
+  # _INSTANCE_MACHINE_TYPE: e2-micro
 
 options:
  logging: CLOUD_LOGGING_ONLY
