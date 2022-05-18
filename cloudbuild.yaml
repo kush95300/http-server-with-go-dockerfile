@@ -33,6 +33,7 @@ steps:
       - --image=gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
       - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=${_COMMIT_SHA},gcb-build-id=${_BUILD_ID},owner=kaushal
       - --region=${_DEPLOY_REGION}
+      - --port=80
       - --quiet
     id: "deploy image"
 substitutions:
