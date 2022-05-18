@@ -20,7 +20,7 @@ steps:
       - 'gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_VERSION}'
   
 substitutions:
-  REPO_VERSION: 'v1.0'
+  IMAGE_VERSION: 'v1.0'
   GCP_PROJECT: searce-playground-v1
   IMAGE_NAME: kaushal-server-cloudbuild
 
