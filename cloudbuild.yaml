@@ -24,3 +24,5 @@ substitutions:
   GCP_PROJECT: searce-playground-v1
   IMAGE_NAME: kaushal-server-cloudbuild
 
+options:
+ logging: CLOUD_LOGGING_ONLY
