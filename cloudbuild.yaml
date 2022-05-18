@@ -43,7 +43,7 @@ substitutions:
   _GCP_PROJECT: searce-playground-v1
 
   # IMAGE VARIABLES
-  _IMAGE_VERSION: 'v1'
+  _IMAGE_VERSION: 'v2'
   _IMAGE_NAME: kaushal-server-cloudbuild-cicd-on-vm
 
   # INSTANCE VARIABLES
