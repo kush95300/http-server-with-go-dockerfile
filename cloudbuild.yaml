@@ -26,8 +26,9 @@ steps:
     entrypoint: gcloud
     args:
       - run
-      - services
+      #- services
       - deploy
+      #- update
       - ${_SERVICE_NAME}
       - --platform=${_PLATFORM}
       - --allow-unauthenticated
