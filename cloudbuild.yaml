@@ -4,7 +4,7 @@ steps:
     args:
       - clone
       - https://github.com/kush95300/http-ftp-server-with-go.git
-  
+    id: "Clone Repo"
   # build the image
   - name: gcr.io/cloud-builders/docker
     args:
@@ -12,13 +12,28 @@ steps:
       - -t
       - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
       - .
+    id: "build image"
 
   # push the image to gcr.io
   - name: gcr.io/cloud-builders/docker
     args:
       - push
       - 'gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}'
-  
+    id: "push image"
+
+  # deploy the image to cloud run
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    args:
+      - run
+      - services
+      - update
+      - ${_SERVICE_NAME}
+      - --platform=managed
+      - --image=gcr.io/${_GCP_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
+      - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=${_COMMIT_SHA},gcb-build-id=${_BUILD_ID},owner=kaushal
+      - --region=${_DEPLOY_REGION}
+      - --quiet
+    id: "deploy image"
 substitutions:
   _GCP_PROJECT: searce-playground-v1
 
@@ -27,11 +42,9 @@ substitutions:
   _IMAGE_NAME: kaushal-server-cloudbuild-cloudrun-cicd
 
   # Cloud RUN Variable VARIABLES
-  # _Service_NAME: kush-vm-name
-  # _NETWORK_NAME: kaushal-vpc
-  # _SUBNET_NAME: kaushal-subnet-1
-  # _INSTANCE_ZONE: asia-south1-a
-  # _INSTANCE_MACHINE_TYPE: e2-micro
-
+  _SERVICE_NAME: kush-cicd-automatic
+  _DEPLOY_REGION: asia-south1
+tags:
+  - kaushal-cicd-automatic
 options:
  logging: CLOUD_LOGGING_ONLY
