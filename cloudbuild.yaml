@@ -34,6 +34,7 @@ steps:
       - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=${_COMMIT_SHA},gcb-build-id=${_BUILD_ID},owner=kaushal
       - --region=${_DEPLOY_REGION}
       - --port=80
+      - --allow-unauthenticated
       - --quiet
     id: "deploy image"
 substitutions:
